@@ -8,6 +8,10 @@
 # testing
 /coverage
 
+# vscode
+.vscode
+/.vscode
+
 # production
 /build
 

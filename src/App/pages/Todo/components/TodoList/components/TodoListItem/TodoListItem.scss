@@ -1,0 +1,19 @@
+.todo-list-item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  height: 42px;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 30px;
+
+  &__badges {
+    align-self: center;
+  }
+
+  &__icon {
+    margin-left: 15px;
+    color: gold;
+    cursor: pointer;
+  }
+}
