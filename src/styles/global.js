@@ -1,4 +1,12 @@
-@import 'styles/variabless.scss';
+import { createGlobalStyle } from 'styled-components';
+import { baseTheme } from './theme';
+
+export default createGlobalStyle`
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   margin: 0;
@@ -6,11 +14,12 @@ body {
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: $background;
+  background: ${baseTheme.colors.background};
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
+ul {
+  list-style-type: none;
   padding: 0;
+  margin: 0;
 }
+`;

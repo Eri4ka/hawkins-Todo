@@ -1,14 +1,20 @@
 import TodoList from './components/TodoList';
 import TodoNav from './components/TodoNav';
 
-import './Todo.scss';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 23px;
+`;
 
 const Todo = () => {
   return (
-    <div className='todo'>
+    <Container>
       <TodoNav />
       <TodoList />
-    </div>
+    </Container>
   );
 };
 

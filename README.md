@@ -1,12 +1,11 @@
 # hawkins-Todo
 
-## (React)HW-2. Хуки
+## (React)HW-3. Cтилизация и маршрутизация
 
 Использовал:
 
-- useState
-- useEffect
-- useRef
-- createRef
-- forwardRef
-- собственные хуки
+- useReducer
+- Styled components
+- React Router
+
+![app](./public/hw3.jpg)

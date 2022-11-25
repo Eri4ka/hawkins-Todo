@@ -6,10 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ReactComponent as DotsIc } from 'icons/todo/dots.svg';
 import TodoListItemMenu from './components/TodoListItemMenu';
 
-import './TodoListItem.scss';
+import { baseTheme } from 'styles/theme';
+import styled from 'styled-components';
 
 const TodoListItem = ({ toDo, handleDeleteToDo, handleToggleFavorite }) => {
-  const { id, title, favorite } = toDo;
+  const { id, title, favorite, date } = toDo;
   const { open, setOpen, popupRef, triggerRef } = usePopup();
 
   const handleFavorite = () => {
@@ -18,12 +19,15 @@ const TodoListItem = ({ toDo, handleDeleteToDo, handleToggleFavorite }) => {
   };
 
   return (
-    <li key={id} className='todo-list-item'>
-      {title}
-      <div className='todo-list-item__badges'>
-        {favorite && <FontAwesomeIcon icon={faStar} className='todo-list-item__icon' />}
-        <DotsIc ref={triggerRef} className='todo-list-item__icon' />
-      </div>
+    <StyledItem key={id}>
+      <StyledWrapper>
+        <StyledTitle>{title}</StyledTitle>
+        <StyledDate>{date}</StyledDate>
+      </StyledWrapper>
+      <StyledBadge>
+        {favorite && <StyledStar icon={faStar} />}
+        <StyledDots ref={triggerRef} />
+      </StyledBadge>
       {open && (
         <TodoListItemMenu
           ref={popupRef}
@@ -31,8 +35,47 @@ const TodoListItem = ({ toDo, handleDeleteToDo, handleToggleFavorite }) => {
           handleFavorite={handleFavorite}
         />
       )}
-    </li>
+    </StyledItem>
   );
 };
+
+const StyledItem = styled.li`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  height: 42px;
+  margin-bottom: 30px;
+`;
+
+const StyledWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const StyledTitle = styled.p`
+  font-size: 18px;
+  font-weight: 700;
+`;
+
+const StyledDate = styled.span`
+  font-size: 14px;
+  color: ${baseTheme.colors.fontGrey};
+`;
+
+const StyledBadge = styled.div`
+  align-self: center;
+`;
+
+const StyledDots = styled(DotsIc)`
+  margin-left: 15px;
+  color: gold;
+  cursor: pointer;
+`;
+
+const StyledStar = styled(FontAwesomeIcon)`
+  margin-left: 15px;
+  color: gold;
+`;
 
 export default TodoListItem;
