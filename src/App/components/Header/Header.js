@@ -5,7 +5,13 @@ import { ReactComponent as MoonIc } from 'icons/header/moon.svg';
 import { baseTheme } from 'styles/theme';
 import styled from 'styled-components';
 
-const Header = () => {
+const Header = ({ lightTheme, setLightTheme }) => {
+  const handleChangeTheme = () => {
+    setLightTheme((theme) => !theme);
+    console.log(lightTheme);
+    localStorage.setItem('lightTheme', !lightTheme);
+  };
+
   return (
     <StyledHeader>
       <StyledHead>Todo App</StyledHead>
@@ -13,9 +19,9 @@ const Header = () => {
         <StyledHeaderItem to='/'>Todo</StyledHeaderItem>
         <StyledHeaderItem to='/team'>Team</StyledHeaderItem>
       </StyledHeaderMenu>
-      <div className='header-icon'>
+      <StyledHeaderIcon lightTheme={lightTheme} onClick={handleChangeTheme}>
         <MoonIc />
-      </div>
+      </StyledHeaderIcon>
     </StyledHeader>
   );
 };
@@ -45,6 +51,12 @@ const StyledHeaderItem = styled(NavLink)`
   &.active {
     color: ${baseTheme.colors.purple};
   }
+`;
+
+const StyledHeaderIcon = styled.div`
+  ${({ theme }) => theme.dFAcJc}
+  color: ${({ lightTheme, theme }) => (lightTheme ? 'gold' : theme.colors.fontGrey)};
+  cursor: pointer;
 `;
 
 export default Header;

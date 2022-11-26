@@ -1,25 +1,15 @@
+import { useContext } from 'react';
+
+import { FilterContext } from '../../Todo';
 import TodoNavItem from './components/TodoNavItem';
 import { ReactComponent as All } from 'icons/todo/item/all.svg';
 import { ReactComponent as Today } from 'icons/todo/item/today.svg';
 import { ReactComponent as Favorite } from 'icons/todo/item/important.svg';
 
 import styled from 'styled-components';
-import { useReducer } from 'react';
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'Today':
-      return { active: (state.active = 'Today') };
-    case 'Favorite':
-      return { active: (state.active = 'Favorite') };
-    default:
-      return { active: (state.active = 'All') };
-  }
-};
 
 const TodoNav = () => {
-  const [state, dispatch] = useReducer(reducer, { active: 'All' });
-
+  const { state, dispatch } = useContext(FilterContext);
   const { active } = state;
 
   return (

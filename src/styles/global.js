@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import { baseTheme } from './theme';
 
 export default createGlobalStyle`
 * {
@@ -14,7 +13,7 @@ body {
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: ${baseTheme.colors.background};
+  background: ${({ theme }) => theme.colors.background}
 }
 
 ul {

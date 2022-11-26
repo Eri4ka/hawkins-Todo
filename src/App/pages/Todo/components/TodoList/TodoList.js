@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 
 import TodoListItem from './components/TodoListItem';
 import TodoAdd from './components/TodoAdd';
 
 import { baseTheme } from 'styles/theme';
 import styled from 'styled-components';
+import { FilterContext } from '../../Todo';
 
 const Container = styled.div`
   width: 70%;
@@ -16,16 +17,25 @@ const Container = styled.div`
 
 const TodoList = () => {
   const [toDo, setToDo] = useState([]);
+  const [filteredToDo, setFilteredToDO] = useState(toDo);
   const [id, setID] = useState(1);
+  const date = new Date();
+  const { state } = useContext(FilterContext);
+
+  useEffect(() => {
+    switch (state.active) {
+      case 'Favorite':
+        return setFilteredToDO(toDo.filter((item) => item.favorite));
+      case 'Today':
+        const currentDate = date.toDateString();
+        return setFilteredToDO(toDo.filter((item) => item.date.toDateString() === currentDate));
+      default:
+        return setFilteredToDO(toDo);
+    }
+  }, [state, toDo]);
 
   const handleAddToDo = (ref) => {
     const value = ref.current.value;
-    const date = new Date().toLocaleString('en-US', {
-      month: 'long',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-    });
 
     if (value) {
       const toDoItem = { id, title: ref.current.value, favorite: false, date };
@@ -53,7 +63,7 @@ const TodoList = () => {
   return (
     <Container>
       <ul>
-        {toDo.map((todo) => (
+        {filteredToDo.map((todo) => (
           <TodoListItem
             key={todo.id}
             toDo={todo}

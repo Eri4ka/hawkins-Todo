@@ -23,3 +23,11 @@ export const baseTheme = {
     flexDirection: 'column',
   },
 };
+
+export const darkTheme = {
+  ...baseTheme,
+  colors: {
+    ...baseTheme.colors,
+    background: '#271d27',
+  },
+};

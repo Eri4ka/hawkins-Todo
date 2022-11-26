@@ -1,11 +1,10 @@
 # hawkins-Todo
 
-## (React)HW-3. Cтилизация и маршрутизация
+## (React)HW-4. Context и Redux
 
 Использовал:
 
-- useReducer
-- Styled components
-- React Router
+- Context
+- Частично добавил Redux(store, reducers, actions)
 
 ![app](./public/hw3.jpg)

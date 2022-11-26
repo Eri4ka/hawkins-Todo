@@ -12,6 +12,12 @@ import styled from 'styled-components';
 const TodoListItem = ({ toDo, handleDeleteToDo, handleToggleFavorite }) => {
   const { id, title, favorite, date } = toDo;
   const { open, setOpen, popupRef, triggerRef } = usePopup();
+  const transformeredDate = date.toLocaleString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+  });
 
   const handleFavorite = () => {
     handleToggleFavorite(id);
@@ -22,7 +28,7 @@ const TodoListItem = ({ toDo, handleDeleteToDo, handleToggleFavorite }) => {
     <StyledItem key={id}>
       <StyledWrapper>
         <StyledTitle>{title}</StyledTitle>
-        <StyledDate>{date}</StyledDate>
+        <StyledDate>{transformeredDate}</StyledDate>
       </StyledWrapper>
       <StyledBadge>
         {favorite && <StyledStar icon={faStar} />}
